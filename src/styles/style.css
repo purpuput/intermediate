@@ -1,0 +1,407 @@
+/* Reset dan dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  color: #2c3e50;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background: linear-gradient(90deg, #2c3e50, #34495e);
+  color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+nav a {
+  color: #ecf0f1;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: #1abc9c;
+  color: #fff;
+}
+
+/* Kontainer Utama */
+main#main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  max-width: 960px;
+  margin: 1rem auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+main#main-content h2 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+/* Form Umum */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+form label {
+  font-weight: 600;
+  color: #34495e;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="file"],
+textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+}
+
+button[type="submit"] {
+  background-color: #27ae60;
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background-color: #1e8449;
+}
+
+button[type="button"] {
+  background-color: #3498db;
+  color: white;
+}
+
+button[type="button"]:hover {
+  background-color: #216fa1;
+}
+
+/* Kamera & Preview */
+#cameraArea {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+#cameraArea video {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+#previewImg {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin: 1rem auto 0;
+}
+
+/* Map */
+#map {
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  margin-top: 1rem;
+}
+
+/* Pesan */
+#loginMessage,
+#registerMessage,
+#uploadMessage,
+#errorMessage,
+#successMessage {
+  text-align: center;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+#errorMessage {
+  color: #e74c3c;
+}
+
+#successMessage {
+  color: #2ecc71;
+}
+
+/* Daftar Cerita */
+#story-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.story {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.story:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.story img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+}
+
+.story h3 {
+  font-size: 1.1rem;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.story p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.story small {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.story button {
+  margin-top: 1rem;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.story button:hover,
+.story button:focus {
+  background-color: #1c5980;
+  outline: none;
+}
+
+/* Loader */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #2980b9;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: spin 1s linear infinite;
+  margin: 1rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsif */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  main#main-content {
+    padding: 1rem;
+  }
+
+  form {
+    max-width: 100%;
+  }
+}
+
+/* Aksesibilitas */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 10px;
+  top: 10px;
+  width: auto;
+  height: auto;
+  background: #000;
+  color: #fff;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+/* Footer Spacer */
+body::after {
+  content: "";
+  display: block;
+  height: 50px;
+}
+
+/* Form helper text */
+.form-helper {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.form-helper a {
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.form-helper a:hover {
+  text-decoration: underline;
+}
+
+/* --- Update khusus untuk Login Form --- */
+form#loginForm {
+  max-width: 320px;
+  margin: 2rem auto 1rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form#loginForm input[type="email"],
+form#loginForm input[type="password"] {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 1.8px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+form#loginForm input[type="email"]:focus,
+form#loginForm input[type="password"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+form#loginForm button[type="submit"] {
+  padding: 0.8rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #27ae60;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form#loginForm button[type="submit"]:hover {
+  background-color: #1e8449;
+}
+
+#loginMessage {
+  color: #e74c3c;
+  text-align: center;
+  font-weight: 600;
+  min-height: 1.2em;
+  margin-top: 0.5rem;
+}
+
+/* Helper text di bawah form login */
+form#loginForm + p {
+  text-align: center;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  color: #555;
+}
+
+form#loginForm + p a {
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+form#loginForm + p a:hover,
+form#loginForm + p a:focus {
+  text-decoration: underline;
+  outline: none;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andrestory</title>
+
+  <link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#0d9488" />
+
+  <!-- CSS Utama -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Skip Link Styling (fallback jika belum ada di CSS utama) -->
+  <style>
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .skip-link:focus {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: auto;
+      height: auto;
+      background: #000;
+      color: #fff;
+      padding: 10px 16px;
+      text-decoration: none;
+      z-index: 1000;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-BFmLGF6o.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-COSDi2bW.css">
+</head>
+
+<body>
+  <!-- Aksesibilitas: Tombol Skip to Content -->
+  <button class="skip-link" id="skip-button">Lewati ke konten utama</button>
+
+  <!-- Header & Navigasi -->
+  <header>
+    <h1>andrestory</h1>
+    <nav aria-label="Navigasi utama">
+      <a href="#/home">Home</a>
+      <a href="#/tambah">Tambah Cerita</a>
+      <a href="#/login">Login</a>
+      <a href="#/login" id="logoutLink" style="display: none;">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Konten Utama -->
+  <main id="main-content" tabindex="-1" role="main"></main>
+
+  <!-- Tombol untuk Tes Notifikasi Push -->
+  <div style="padding: 1rem;">
+    <button id="btn-push" class="bg-blue-500 text-white px-4 py-2 rounded">
+      Tes Notifikasi
+    </button>
+  </div>
+
+  <!-- Script Leaflet & App -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Skip-to-Content Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mainContent = document.querySelector('#main-content');
+      const skipButton = document.querySelector('#skip-button');
+
+      skipButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        skipButton.blur(); // Hilangkan fokus tombol
+        mainContent.focus(); // Pindahkan fokus
+        mainContent.scrollIntoView({ behavior: 'smooth' }); // Scroll dengan halus
+      });
+    });
+  </script>
+</body>
+</html>

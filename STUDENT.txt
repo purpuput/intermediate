@@ -1,0 +1,4 @@
+Menggunakan:
+- API: https://story-api.dicoding.dev/v1
+- Map: Leaflet.js (tidak memerlukan API key)
+- Kamera: Tidak menggunakan stream kamera langsung, hanya input file (upload manual)
