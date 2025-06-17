@@ -1,6 +1,7 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { fetchStoryDetail } from '../presenter/detailPresenter.js';
+import { saveStoryOffline, deleteStoryByDate, getAllPendingStories } from '../utils/idb.js';
 
 const getQueryParams = (queryString) => {
   const params = {};
@@ -13,8 +14,13 @@ const getQueryParams = (queryString) => {
   return params;
 };
 
+const isStorySaved = async (date) => {
+  const all = await getAllPendingStories();
+  return all.some(item => item.date === date);
+};
+
 export const renderDetail = async (container) => {
-  container.setAttribute('aria-live', 'polite'); // bantu screen reader update
+  container.setAttribute('aria-live', 'polite');
 
   const token = localStorage.getItem('token');
   if (!token) {
@@ -61,12 +67,40 @@ export const renderDetail = async (container) => {
   html += `<br/><button onclick="window.history.back()">Kembali</button>`;
   container.innerHTML = html;
 
+  // Tampilkan peta
   if (story.lat !== undefined && story.lon !== undefined) {
     const map = L.map('map').setView([story.lat, story.lon], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
-
     L.marker([story.lat, story.lon]).addTo(map).bindPopup("Lokasi cerita").openPopup();
   }
+
+  // Tambahkan tombol Simpan/Hapus Offline
+  const actionsDiv = document.createElement('div');
+  actionsDiv.id = 'offline-actions';
+
+  const saved = await isStorySaved(story.createdAt);
+  const btn = document.createElement('button');
+  btn.textContent = saved ? 'Hapus dari Offline' : 'Simpan Offline';
+  btn.className = 'mt-2 p-2 border rounded bg-blue-600 text-white';
+
+  btn.addEventListener('click', async () => {
+    if (await isStorySaved(story.createdAt)) {
+      await deleteStoryByDate(story.createdAt);
+      btn.textContent = 'Simpan Offline';
+      alert('✅ Cerita dihapus dari penyimpanan offline.');
+    } else {
+      await saveStoryOffline({
+        date: story.createdAt,
+        title: story.name,
+        body: story.description,
+      });
+      btn.textContent = 'Hapus dari Offline';
+      alert('✅ Cerita disimpan offline.');
+    }
+  });
+
+  container.appendChild(actionsDiv);
+  actionsDiv.appendChild(btn);
 };

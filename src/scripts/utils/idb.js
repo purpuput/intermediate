@@ -7,14 +7,14 @@ const STORE_NAME = 'pendingStories';
 const dbPromise = openDB(DB_NAME, DB_VERSION, {
   upgrade(db, oldVersion, newVersion, transaction) {
     if (oldVersion < 1) {
-      db.createObjectStore(STORE_NAME, { keyPath: 'date' });
+      db.createObjectStore(STORE_NAME, { keyPath: 'id' });
     }
     if (oldVersion === 1) {
       // hapus object store lama dan buat ulang
       if (db.objectStoreNames.contains(STORE_NAME)) {
         db.deleteObjectStore(STORE_NAME);
       }
-      db.createObjectStore(STORE_NAME, { keyPath: 'date' });
+      db.createObjectStore(STORE_NAME, { keyPath: 'id' });
     }
   },
 });
